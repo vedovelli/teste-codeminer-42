@@ -20,20 +20,46 @@ class FileController extends \BaseController {
 	 */
 	public function upload()
 	{
-		if(
-			Input::file('planilha')->isValid() &&
-			(
-				Input::file('planilha')->getClientOriginalExtension() == 'xls' ||
-				Input::file('planilha')->getClientOriginalExtension() == 'xlsx'
-			)
-		){
 
-			$result = Input::file('planilha')->move(storage_path().'/import', Input::file('planilha')->getClientOriginalName());
-			return Redirect::to('file')->with('message', 'Arquivo enviado com sucesso!');
+		$file = Input::file('planilha');
+		$name = $file->getClientOriginalName();
+		$extension = $file->getClientOriginalExtension();
+		$path = storage_path().'/import';
+
+		if($file->isValid()){
+
+			if($extension == 'xls' || $extension == 'xlsx'){
+
+				$file->move($path, $name);
+				$this->readExcelFile($path, $name);
+				return Redirect::to('file')->with('message', 'Arquivo enviado com sucesso!');
+			} else {
+
+				return Redirect::to('file')->with('message', 'O arquivo precisa ser uma planilha de Excel.');
+			}
+
 		} else {
 
 			return Redirect::to('file')->with('message', 'Falha no envio do arquivo.');
 		}
+	}
+
+	private function readExcelFile($path, $name) {
+
+		$reader = Excel::selectSheetsByIndex(0)->load($path.'/'.$name);
+
+		$product = array();
+
+		$reader->each(function($sheet) {
+
+			$product['lm'] = $sheet->lm;
+			$product['name'] = $sheet->name;
+			$product['free_shipping'] = $sheet->free_shipping;
+			$product['description'] = $sheet->description;
+			$product['price'] = $sheet->price;
+			$product['category'] = $sheet->category;
+			
+		});
 	}
 
 
