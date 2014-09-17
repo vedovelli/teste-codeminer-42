@@ -15,40 +15,6 @@ class ProductsController extends \BaseController {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 * GET /products/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /products
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 * GET /products/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
 	 * Show the form for editing the specified resource.
 	 * GET /products/{id}/edit
 	 *
@@ -81,7 +47,8 @@ class ProductsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Product::destroy($id);
+		return Redirect::to('/products');
 	}
 
 }

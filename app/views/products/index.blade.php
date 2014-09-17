@@ -24,7 +24,7 @@
 				<a href="#" class="btn btn-primary btn-xs">atualizar</a>
 			</td>
 			<td class="text-center" width="1%">
-				<a href="#" class="btn btn-danger btn-xs">remover</a>
+				<a href="/products/remove/{{{$product->id}}}" class="btn btn-danger btn-xs">remover</a>
 			</td>
 		</tr>
 	@endforeach
