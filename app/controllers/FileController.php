@@ -21,119 +21,53 @@ class FileController extends \BaseController {
 	public function upload()
 	{
 
-		$file = Input::file('planilha');
-		$name = $file->getClientOriginalName();
-		$extension = $file->getClientOriginalExtension();
-		$path = storage_path().'/import';
+		$file = Input::file('planilha'); // Pega a referência ao arquivo enviado
+		$name = $file->getClientOriginalName(); // Guarda o nome do arquivo
+		$extension = $file->getClientOriginalExtension(); // Guarda a extensão do arquivo
+		$path = storage_path().'/import'; // Determina onde o arquivo será salvo
 
-		if($file->isValid()){
+		if($file->isValid()){ // Se o arquivo for válido
 
-			if($extension == 'xls' || $extension == 'xlsx'){
+			if($extension == 'xls' || $extension == 'xlsx'){ // Verifica se é um arquivo Excel
 
-				$file->move($path, $name);
-				$this->createProductsFromExcel($path, $name);
+				$file->move($path, $name); // Salva o arquivo em disco
+
+				// Adiciona a tarefa de leitura do arquivo e criação dos registros no banco de dados à fila
+				Queue::push(function($job) use ($path, $name)	{
+
+					Product::truncate(); // Limpa a tabela, evitando assim itens duplicados
+
+					$reader = Excel::selectSheetsByIndex(0)->load($path.'/'.$name); // Le o arquivo Excel
+
+					$reader->each(function($sheet) { // Faz o loop nas linhas que contém conteúdo
+
+						$product = array();
+						$product['lm'] = $sheet->lm;
+						$product['name'] = $sheet->name;
+						$product['free_shipping'] = $sheet->free_shipping;
+						$product['description'] = $sheet->description;
+						$product['price'] = $sheet->price;
+						$product['category'] = $sheet->category;
+
+						// Cria um novo produto baseado nas informações obtidas no arquivo Excel
+						Product::create($product);
+
+					});
+
+				});
+
+				// Redireciona para a tela anterior com mensagem de sucesso!
 				return Redirect::to('file')->with('message', 'Arquivo enviado com sucesso!');
 			} else {
 
+				// Redireciona para a tela anterior com mensagem indicando que o arquivo enviado não é Excel
 				return Redirect::to('file')->with('message', 'O arquivo precisa ser uma planilha de Excel.');
 			}
 
 		} else {
 
+			// Redireciona para a tela anterior indicando falha no upload do arquivo!
 			return Redirect::to('file')->with('message', 'Falha no envio do arquivo.');
 		}
 	}
-
-	private function createProductsFromExcel($path, $name) {
-
-		Product::truncate();
-
-		$reader = Excel::selectSheetsByIndex(0)->load($path.'/'.$name);
-
-		$reader->each(function($sheet) {
-
-			$product = array();
-			$product['lm'] = $sheet->lm;
-			$product['name'] = $sheet->name;
-			$product['free_shipping'] = $sheet->free_shipping;
-			$product['description'] = $sheet->description;
-			$product['price'] = $sheet->price;
-			$product['category'] = $sheet->category;
-
-			Product::create($product);
-
-		});
-	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
 }

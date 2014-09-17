@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sync',
+	'default' => 'iron',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,9 +52,9 @@ return array(
 		'iron' => array(
 			'driver'  => 'iron',
 			'host'    => 'mq-aws-us-east-1.iron.io',
-			'token'   => 'your-token',
-			'project' => 'your-project-id',
-			'queue'   => 'your-queue-name',
+			'token'   => 'pouv9Do5LxCfSBTYcTYXgOPCAqI',
+			'project' => '5419c5aad33c580005000053',
+			'queue'   => 'Products',
 			'encrypt' => true,
 		),
 

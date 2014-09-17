@@ -8,9 +8,10 @@
 
 	{{Form::open(array('url'=>'/file/upload', 'files'=> true))}}
 
-	{{Form::label('planilha', 'Selecione a planilha a ser importada')}}
 	{{Form::file('planilha')}}
-	{{Form::submit('Enviar')}}
+	{{Form::label('planilha', 'Selecione a planilha a ser importada')}}
+	<br>{{Form::submit('Enviar')}}
+	<div class="warning"><strong>Atenção</strong>: todos os produtos atualmente armazenados serão removidos antes para dar lugar aos novos produtos</div>
 
 	{{Form::close()}}
 
