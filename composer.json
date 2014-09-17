@@ -8,6 +8,9 @@
 		"maatwebsite/excel": "1.*",
 		"iron-io/iron_mq": "1.4.6"
 	},
+	"require-dev": {
+    "way/generators": "~2.0"
+	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
