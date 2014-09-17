@@ -31,7 +31,7 @@ class FileController extends \BaseController {
 			if($extension == 'xls' || $extension == 'xlsx'){
 
 				$file->move($path, $name);
-				$this->readExcelFile($path, $name);
+				$this->createProductsFromExcel($path, $name);
 				return Redirect::to('file')->with('message', 'Arquivo enviado com sucesso!');
 			} else {
 
@@ -44,21 +44,24 @@ class FileController extends \BaseController {
 		}
 	}
 
-	private function readExcelFile($path, $name) {
+	private function createProductsFromExcel($path, $name) {
+
+		Product::truncate();
 
 		$reader = Excel::selectSheetsByIndex(0)->load($path.'/'.$name);
 
-		$product = array();
-
 		$reader->each(function($sheet) {
 
+			$product = array();
 			$product['lm'] = $sheet->lm;
 			$product['name'] = $sheet->name;
 			$product['free_shipping'] = $sheet->free_shipping;
 			$product['description'] = $sheet->description;
 			$product['price'] = $sheet->price;
 			$product['category'] = $sheet->category;
-			
+
+			Product::create($product);
+
 		});
 	}
 
