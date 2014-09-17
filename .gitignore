@@ -3,3 +3,5 @@
 .env.php
 /vendor
 artisan
+/public/app
+config.codekit
