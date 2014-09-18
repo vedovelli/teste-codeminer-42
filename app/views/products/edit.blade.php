@@ -4,16 +4,17 @@
 
 {{Form::open(array('url'=>'/products/update'))}}
 
-	<input type="hidden" name="id" value="{{{$product->id}}}">
+
+	{{Form::hidden('id', $product->id)}}
 
   <div class="form-group">
     <label for="product_name">Nome</label>
-    <input type="text" name="name" class="form-control" id="product_name" placeholder="Nome do produto é obrigatório" value="{{{$product->name}}}">
+    {{Form::text('name', $product->name, array('class' => 'form-control', 'id' => 'product_name','placeholder' => 'Nome do produto é obrigatório'))}}
   </div>
 
   <div class="form-group">
     <label for="product_description">Descrição</label>
-    <input type="text" name="description" class="form-control" id="product_description" placeholder="Descrição do produto é obrigatória" value="{{{$product->description}}}">
+  	{{Form::text('description', $product->description, array('class' => 'form-control', 'id' => 'product_description','placeholder' => 'Descrição do produto é obrigatória'))}}
   </div>
 
   <div class="row">
@@ -23,7 +24,7 @@
 				<label for="product_price">Preço <small>formato: 1245.99</small></label>
 				<div class="input-group">
 					<div class="input-group-addon">R$</div>
-					<input type="text" name="price" class="form-control" id="product_price" placeholder="Preço do produto é obrigatório" value="{{{$product->price}}}">
+					{{Form::text('price', $product->price, array('class' => 'form-control', 'id' => 'product_price','placeholder' => 'Preço do produto é obrigatório'))}}
 				</div>
 			</div>
 		</div>
