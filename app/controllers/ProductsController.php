@@ -28,7 +28,6 @@ class ProductsController extends \BaseController {
 		$result = $product->save();
 
 		return Redirect::to('products');
-
 	}
 
 	public function destroy($id)

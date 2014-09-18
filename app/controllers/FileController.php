@@ -54,6 +54,8 @@ class FileController extends \BaseController {
 
 					});
 
+					$job->delete(); // Remove job from Queue
+
 				});
 
 				// Redireciona para a tela anterior com mensagem de sucesso!
