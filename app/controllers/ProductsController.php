@@ -15,25 +15,15 @@ class ProductsController extends \BaseController {
 
 	public function update()
 	{
-		$product = Product::find(Input::get('id'));
 
-		$product->name = Input::get('name');
-		$product->description = Input::get('description');
-		$product->price = Input::get('price');
-
-		if(Input::has('free_shipping')) {
-			$product->free_shipping = Input::get('free_shipping');
-		}
-
-		$result = $product->save();
-
-		return Redirect::to('products');
+		Product::_update();
+		return Redirect::to('product');
 	}
 
 	public function destroy($id)
 	{
 		Product::destroy($id);
-		return Redirect::to('/products');
+		return Redirect::to('/product');
 	}
 
 }

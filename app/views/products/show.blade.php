@@ -1,1 +1,0 @@
-/Users/vedovelli/Experiences/teste-codeminer-42/app/views/products/show.blade.php

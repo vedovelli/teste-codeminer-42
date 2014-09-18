@@ -36,7 +36,7 @@ class FileController extends \BaseController {
 				$product_import = $product_import->doIt($path, $name); // Faz a importação
 
 				// Redireciona para a tela anterior com mensagem de sucesso!
-				return Redirect::to('file')->with('message-success', 'Arquivo enviado com sucesso! <small>[ <a href="/products">ver produtos</a> ]</small>');
+				return Redirect::to('file')->with('message-success', 'Arquivo enviado com sucesso! <small>[ <a href="/product">ver produtos</a> ]</small>');
 			} else {
 
 				// Redireciona para a tela anterior com mensagem indicando que o arquivo enviado não é Excel

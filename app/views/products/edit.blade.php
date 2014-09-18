@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{Form::open(array('url'=>'/products/update'))}}
+{{Form::open(array('url'=>'/product/update'))}}
 
 
 	{{Form::hidden('id', $product->id)}}
@@ -39,7 +39,7 @@
 
 	</div>
 
-  <button type="submit" class="btn btn-default">Salvar</button> <small>ou <a href="/products">voltar</a></small>
+  <button type="submit" class="btn btn-default">Salvar</button> <small>ou <a href="/product">voltar</a></small>
 
 {{ Form::close() }}
 @stop

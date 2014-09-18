@@ -9,7 +9,7 @@
 
 	<div class="container">
 		<div class="page-header">
-			<h1>Codeminer 42 <small>Admission Test</small></h1>
+			<h1>Codeminer42 <small>Admission Test</small></h1>
 		</div>
 		@yield('content')
 	</div>
