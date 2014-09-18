@@ -1,4 +1,6 @@
-teste-codeminer-42
-==================
+Codeminer42 - Admission Test
+============================
 
-Test for Codeminer 42
+##Instruções de instalação
+
+* Clonar o repositório: `git clone git@github.com:vedovelli/teste-codeminer-42`

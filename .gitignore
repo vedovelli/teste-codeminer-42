@@ -2,7 +2,7 @@
 .env.*.php
 .env.php
 /vendor
-artisan
 /public/app
 config.codekit
 composer.lock
+README.html
