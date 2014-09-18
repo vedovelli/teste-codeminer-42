@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Teste Codeminer42</title>
-	<link rel="stylesheet" href="/app/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
 
