@@ -2,8 +2,11 @@
 
 @section('content')
 
-	@if(Session::get('message'))
-		<div class="message">{{Session::get('message')}}</div>
+	@if(Session::get('message-success'))
+		<div class="alert alert-success">{{Session::get('message-success')}}</div>
+	@endif
+	@if(Session::get('message-fail'))
+		<div class="alert alert-danger">{{Session::get('message-fail')}}</div>
 	@endif
 
 	{{Form::open(array('url'=>'/file/upload', 'files'=> true))}}

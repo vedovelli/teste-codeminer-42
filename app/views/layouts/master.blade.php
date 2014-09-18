@@ -6,9 +6,11 @@
 	<link rel="stylesheet" href="/app/bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1>Teste Codeminer 42</h1>
 
 	<div class="container">
+		<div class="page-header">
+			<h1>Codeminer 42 <small>Admission Test</small></h1>
+		</div>
 		@yield('content')
 	</div>
 

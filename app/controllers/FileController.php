@@ -57,17 +57,17 @@ class FileController extends \BaseController {
 				});
 
 				// Redireciona para a tela anterior com mensagem de sucesso!
-				return Redirect::to('file')->with('message', 'Arquivo enviado com sucesso!');
+				return Redirect::to('file')->with('message-success', 'Arquivo enviado com sucesso! <small>[ <a href="/products">ver produtos</a> ]</small>');
 			} else {
 
 				// Redireciona para a tela anterior com mensagem indicando que o arquivo enviado não é Excel
-				return Redirect::to('file')->with('message', 'O arquivo precisa ser uma planilha de Excel.');
+				return Redirect::to('file')->with('message-fail', 'O arquivo precisa ser uma planilha de Excel.');
 			}
 
 		} else {
 
 			// Redireciona para a tela anterior indicando falha no upload do arquivo!
-			return Redirect::to('file')->with('message', 'Falha no envio do arquivo.');
+			return Redirect::to('file')->with('message-fail', 'Falha no envio do arquivo.');
 		}
 	}
 }

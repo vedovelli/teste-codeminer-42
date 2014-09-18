@@ -123,7 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Maatwebsite\Excel\ExcelServiceProvider',
-		'Way\Generators\GeneratorsServiceProvider'
+		'Way\Generators\GeneratorsServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider'
 
 	),
 
@@ -192,7 +193,8 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 
-		'Excel' => 'Maatwebsite\Excel\Facades\Excel'
+		'Excel' 					=> 'Maatwebsite\Excel\Facades\Excel',
+		'Debugbar' 				=> 'Barryvdh\Debugbar\Facade'
 
 	),
 

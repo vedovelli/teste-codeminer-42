@@ -23,7 +23,7 @@ class ProductsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return View::make('products.edit')->with('product', Product::find($id));
 	}
 
 	/**
@@ -33,9 +33,21 @@ class ProductsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update()
 	{
-		//
+		$product = Product::find(Input::get('id'));
+		$product->name = Input::get('name');
+		$product->description = Input::get('description');
+		$product->price = str_replace(',', '', Input::get('price'));
+
+		if(Input::has('free_shipping')) {
+			$product->free_shipping = Input::get('free_shipping');
+		}
+
+		$result = $product->save();
+
+		return Redirect::to('products');
+
 	}
 
 	/**
