@@ -18,10 +18,10 @@
 			<td>{{{$product->id}}}</td>
 			<td title="{{{$product->description}}}">{{{$product->name}}}</td>
 			<td class="text-center">{{{$product->free_shipping == 1 ? 'Sim':'Não'}}}</td>
-			<td class="text-right">R$ {{{number_format($product->price, 2, ',', '.')}}}</td>
+			<td class="text-right">R$ {{{$product->price}}}</td>
 			<td>{{{$product->category}}}</td>
 			<td class="text-center" width="1%">
-				<a href="/products/edit/{{{$product->id}}}" class="btn btn-primary btn-xs">atualizar</a>
+				<a href="/products/edit/{{{$product->id}}}" class="btn btn-primary btn-xs">editar</a>
 			</td>
 			<td class="text-center" width="1%">
 				<a href="/products/remove/{{{$product->id}}}" class="btn btn-danger btn-xs">remover</a>

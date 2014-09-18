@@ -46,7 +46,7 @@ class FileController extends \BaseController {
 						$product['name'] = $sheet->name;
 						$product['free_shipping'] = $sheet->free_shipping;
 						$product['description'] = $sheet->description;
-						$product['price'] = $sheet->price;
+						$product['price'] = number_format((float) $sheet->price, 2, ',', '.');
 						$product['category'] = $sheet->category;
 
 						// Cria um novo produto baseado nas informações obtidas no arquivo Excel
