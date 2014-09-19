@@ -6,3 +6,4 @@
 config.codekit
 composer.lock
 README.html
+phpunit.phar

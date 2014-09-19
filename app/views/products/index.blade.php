@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+
+@if(Session::get('message'))
+	<div class="alert alert-success">{{Session::get('message')}}</div>
+@endif
+
 <table class="table">
 	<theader>
 		<tr>
@@ -31,5 +36,5 @@
 	</tbody>
 </table>
 
-<p><a href="/file" class="btn btn-default">Importar Produtos</a></p>
+<p><a id="import_button" href="/file" class="btn btn-default">Importar Produtos</a></p>
 @stop
