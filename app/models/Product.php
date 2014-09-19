@@ -4,16 +4,18 @@ class Product extends Eloquent {
 
 	protected $fillable = array('lm', 'name', 'free_shipping', 'description', 'price', 'category');
 
-	public static function _update() {
+	public static function updateProduct($input) {
 
-		$product = Product::find(Input::get('id'));
+		$product = Product::find($input['id']);
 
-		$product->name = Input::get('name');
-		$product->description = Input::get('description');
-		$product->price = Input::get('price');
+		$product->name = $input['name'];
+		$product->description = $input['description'];
+		$product->price = $input['price'];
 
-		if(Input::has('free_shipping')) {
-			$product->free_shipping = Input::get('free_shipping');
+		if(is_null($input['free_shipping'])) {
+			$product->free_shipping = 0;
+		} else {
+			$product->free_shipping = 1;
 		}
 
 		return $product->save();

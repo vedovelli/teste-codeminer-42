@@ -16,7 +16,16 @@ class ProductsController extends \BaseController {
 	public function update()
 	{
 
-		Product::_update();
+		Product::updateProduct(
+			array(
+				'id' => Input::get('id'),
+				'name' => Input::get('name'),
+				'description' => Input::get('description'),
+				'price' => Input::get('price'),
+				'free_shipping' => Input::get('free_shipping')
+			)
+		);
+
 		return Redirect::to('product');
 	}
 

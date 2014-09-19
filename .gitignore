@@ -2,7 +2,7 @@
 .env.*.php
 .env.php
 /vendor
-/public/app
+/public/bower_components
 config.codekit
 composer.lock
 README.html
