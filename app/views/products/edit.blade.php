@@ -21,7 +21,6 @@
 
 		<div class="col-xs-2">
 			<div class="form-group">
-				<label for="product_price">Preço <small>formato: 1245.99</small></label>
 				<div class="input-group">
 					<div class="input-group-addon">R$</div>
 					{{Form::text('price', $product->price, array('class' => 'form-control', 'id' => 'product_price','placeholder' => 'Preço do produto é obrigatório'))}}
@@ -31,7 +30,7 @@
 
 		<div class="col-xs-2">
 		  <div class="checkbox">
-		    <label style="margin-top: 22px">
+		    <label>
 		      <input type="checkbox" name="free_shipping" value="1" {{{$product->free_shipping == 1 ? 'checked="checked"' : ''}}}> Frete grátis
 		    </label>
 		  </div>
