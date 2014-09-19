@@ -26,10 +26,10 @@
 			<td class="text-right">R$ {{{$product->price}}}</td>
 			<td>{{{$product->category}}}</td>
 			<td class="text-center" width="1%">
-				<a href="/product/edit/{{{$product->id}}}" class="btn btn-primary btn-xs">editar</a>
+				<a href="/product/edit/{{{$product->id}}}" class="btn btn-primary btn-xs link-editar">editar</a>
 			</td>
 			<td class="text-center" width="1%">
-				<a href="/product/remove/{{{$product->id}}}" class="btn btn-danger btn-xs">remover</a>
+				<a href="/product/remove/{{{$product->id}}}" class="btn btn-danger btn-xs link-remover">remover</a>
 			</td>
 		</tr>
 	@endforeach

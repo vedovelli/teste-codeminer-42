@@ -21,8 +21,10 @@ class ProductRepository implements IProductRepository {
 		$product->price = $product_data['price'];
 
 		if(is_null($product_data['free_shipping'])) {
+
 			$product->free_shipping = 0;
 		} else {
+
 			$product->free_shipping = 1;
 		}
 
