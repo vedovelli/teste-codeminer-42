@@ -7,6 +7,11 @@ class ProductRepository implements IProductRepository {
 		return Product::orderBy($column_to_order_by, $direction)->get();
 	}
 
+	public function getProduct($product_id) {
+
+		return Product::find($product_id);
+	}
+
 	public function updateProduct($product_data) {
 
 		$product = Product::find($product_data['id']);

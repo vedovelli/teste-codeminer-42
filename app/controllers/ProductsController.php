@@ -16,7 +16,15 @@ class ProductsController extends \BaseController {
 
 	public function edit($id)
 	{
-		return View::make('products.edit')->with('product', Product::find($id));
+		$product = $this->repo->getProduct($id);
+
+		if(is_null($product)) {
+
+			return Redirect::to('product')->with('message', 'Produto não encontrado');
+		} else {
+
+			return View::make('products.edit')->with('product', $product);
+		}
 	}
 
 	public function update()
