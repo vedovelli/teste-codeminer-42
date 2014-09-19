@@ -17,9 +17,13 @@ ClassLoader::addDirectories(array(
 	app_path().'/controllers',
 	app_path().'/models',
 	app_path().'/database/seeds',
-	app_path().'/custom',
+	app_path().'/interfaces',
+	app_path().'/repositories',
 
 ));
+
+/* Associa a classe abstrata IProductUpload à classe concreta ProductUploadRepository */
+App::bind('IProductUpload', 'ProductUploadRepository');
 
 /*
 |--------------------------------------------------------------------------

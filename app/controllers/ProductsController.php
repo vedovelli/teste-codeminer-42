@@ -4,7 +4,7 @@ class ProductsController extends \BaseController {
 
 	public function index()
 	{
-		$products = Product::all();
+		$products = Product::orderBy('updated_at', 'DESC')->get();
 		return View::make('products.index')->with('products', $products);
 	}
 

@@ -2,6 +2,12 @@
 
 class FileController extends \BaseController {
 
+	private $repo;
+
+	public function __construct(IProductUpload $repo) {
+		$this->repo = $repo;
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -22,31 +28,21 @@ class FileController extends \BaseController {
 	{
 
 		$file = Input::file('planilha'); // Pega a referência ao arquivo enviado
-		$name = $file->getClientOriginalName(); // Guarda o nome do arquivo
-		$extension = $file->getClientOriginalExtension(); // Guarda a extensão do arquivo
-		$path = storage_path().'/import'; // Determina onde o arquivo será salvo
 
-		if($file->isValid()){ // Se o arquivo for válido
+		$uploadStatus = $this->repo->upload($file);
 
-			if($extension == 'xls' || $extension == 'xlsx'){ // Verifica se é um arquivo Excel
-
-				$file->move($path, $name); // Salva o arquivo em disco
-
-				$product_import = new ProductImport; // Instancia a classe que contem o método responsável por processar o arquivo
-				$product_import = $product_import->doIt($path, $name); // Faz a importação
-
-				// Redireciona para a tela anterior com mensagem de sucesso!
+		switch($uploadStatus) {
+			case 0:
 				return Redirect::to('file')->with('message-success', 'Arquivo enviado com sucesso! <small>[ <a href="/product">ver produtos</a> ]</small>');
-			} else {
-
-				// Redireciona para a tela anterior com mensagem indicando que o arquivo enviado não é Excel
+				break;
+			case 1:
 				return Redirect::to('file')->with('message-fail', 'O arquivo precisa ser uma planilha de Excel.');
-			}
-
-		} else {
-
-			// Redireciona para a tela anterior indicando falha no upload do arquivo!
-			return Redirect::to('file')->with('message-fail', 'Falha no envio do arquivo.');
+				break;
+			case 2:
+				return Redirect::to('file')->with('message-fail', 'Falha no envio do arquivo.');
+				break;
 		}
+
+
 	}
 }
