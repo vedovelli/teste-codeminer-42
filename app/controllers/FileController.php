@@ -4,7 +4,7 @@ class FileController extends \BaseController {
 
 	private $repo;
 
-	public function __construct(IProductUpload $repo) {
+	public function __construct(IProductUploadRepository $repo) {
 		$this->repo = $repo;
 	}
 

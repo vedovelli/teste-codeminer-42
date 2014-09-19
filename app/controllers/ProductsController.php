@@ -2,9 +2,15 @@
 
 class ProductsController extends \BaseController {
 
+	private $repo;
+
+	public function __construct(IProductRepository $repo) {
+		$this->repo = $repo;
+	}
+
 	public function index()
 	{
-		$products = Product::orderBy('updated_at', 'DESC')->get();
+		$products = $this->repo->listProducts('updated_at', 'DESC');
 		return View::make('products.index')->with('products', $products);
 	}
 
@@ -16,7 +22,7 @@ class ProductsController extends \BaseController {
 	public function update()
 	{
 
-		Product::updateProduct(
+		$this->repo->updateProduct(
 			array(
 				'id' => Input::get('id'),
 				'name' => Input::get('name'),
@@ -31,7 +37,7 @@ class ProductsController extends \BaseController {
 
 	public function destroy($id)
 	{
-		Product::destroy($id);
+		$this->repo->destroyProduct($id);
 		return Redirect::to('/product');
 	}
 

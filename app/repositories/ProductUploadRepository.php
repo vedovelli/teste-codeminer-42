@@ -1,6 +1,6 @@
 <?php
 
-class ProductUploadRepository implements IProductUpload {
+class ProductUploadRepository implements IProductUploadRepository {
 
 
 	public function upload($file) {

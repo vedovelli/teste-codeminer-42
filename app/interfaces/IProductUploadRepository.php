@@ -1,6 +1,6 @@
 <?php
 
-interface IProductUpload {
+interface IProductUploadRepository {
 
 	public function upload($file);
 

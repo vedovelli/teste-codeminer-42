@@ -22,8 +22,11 @@ ClassLoader::addDirectories(array(
 
 ));
 
-/* Associa a classe abstrata IProductUpload à classe concreta ProductUploadRepository */
-App::bind('IProductUpload', 'ProductUploadRepository');
+/* Associa a classe abstrata IProductUploadRepository à classe concreta ProductUploadRepository */
+App::bind('IProductUploadRepository', 'ProductUploadRepository');
+
+/* Associa a classe abstrata IProductRepository à classe concreta ProductRepository */
+App::bind('IProductRepository', 'ProductRepository');
 
 /*
 |--------------------------------------------------------------------------
