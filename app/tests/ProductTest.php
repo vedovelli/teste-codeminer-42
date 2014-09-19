@@ -12,7 +12,7 @@ class ProductTest extends TestCase {
 	}
 
 	/** @test */
-	public function it_has_product_list() {
+	public function product_management() {
 
 		// Acessa a funcionalidade produtos e retorna a representação do DOM da página
 		$crawler = $this->client->request('GET', 'product');
@@ -60,23 +60,21 @@ class ProductTest extends TestCase {
 			// Certifica-se de que a atualização foi feita com sucesso
 			$this->assertTrue($update_result);
 
-
 		}
 
 		// Se a lista está preenchida
-		// if(count($link_remover) > 0) {
+		if(count($link_remover) > 0) {
 
 			// Pega o link do primeiro botão remover
-			// $url_remover = $link_remover->first()->attr('href');
+			$url_remover = $link_remover->first()->attr('href');
 
 			// Acessa o link
-			// $this->call('GET', $url_remover);
+			$this->call('GET', $url_remover);
 
 			// Verifica se é redirecionado para a lista de produtos
-			// $this->assertRedirectedTo('product');
-		// }
+			$this->assertRedirectedTo('product');
+		}
 
 	}
-
 
 }

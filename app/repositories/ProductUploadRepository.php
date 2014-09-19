@@ -44,10 +44,12 @@ class ProductUploadRepository implements IProductUploadRepository {
 
 				return 0; // Sucesso
 			} else {
+
 				return 1; // Arquivo diferente de Excel
 			}
 
 		} else {
+
 			return 2; // Falha no envio do arquivo
 		}
 
